@@ -97,8 +97,8 @@ Bool_t MyAnalysisMaker::IsBadEvent(StMuEvent *muEvent)
     //return kTRUE;
    
     //mb AuAu27
-    //if(!(muEvent->triggerIdCollection().nominal().isTrigger(360001)))
-    //return kTRUE;
+    if(!(muEvent->triggerIdCollection().nominal().isTrigger(360001)))
+    return kTRUE;
    
     //mb AuAu19
     //if(!(muEvent->triggerIdCollection().nominal().isTrigger(340001) || muEvent->triggerIdCollection().nominal().isTrigger(340011) || muEvent->triggerIdCollection().nominal().isTrigger(340021)))
@@ -109,8 +109,8 @@ Bool_t MyAnalysisMaker::IsBadEvent(StMuEvent *muEvent)
     //return kTRUE;
     
     //mb AuAu11
-    if(!(muEvent->triggerIdCollection().nominal().isTrigger(310004) || muEvent->triggerIdCollection().nominal().isTrigger(310014)))
-    return kTRUE;
+//    if(!(muEvent->triggerIdCollection().nominal().isTrigger(310004) || muEvent->triggerIdCollection().nominal().isTrigger(310014)))
+//    return kTRUE;
    
     //mb AuAu7
     //if(!(muEvent->triggerIdCollection().nominal().isTrigger(290004)))
@@ -207,7 +207,7 @@ Int_t MyAnalysisMaker::Make()
 	if(nHitsDedx <= 5) continue;
 
         nsigmapr = track->nSigmaProton();
-        if(fabs(nsigmapr) > 2.2) continue; // < 1 for 27 GeV
+        if(fabs(nsigmapr) > 1.0) continue; // < 1 for 27 GeV 2.2 else
         
         if(fabs(eta) > 0.6) continue;
         if(dca < 0 || dca > 2.2) continue;
